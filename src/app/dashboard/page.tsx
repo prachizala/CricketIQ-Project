@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { getTopPlayers, getRecentMatches, getAllPlayerImpacts, getMatches } from '@/lib/dataLoader';
+import { getTopPlayers, getRecentMatches, getAllPlayerImpacts, getMatches, getSeasons } from '@/lib/dataLoader';
 import PlayerCard from '@/components/PlayerCard';
 import MatchSummary from '@/components/MatchSummary';
 import {
@@ -58,6 +58,28 @@ export default function DashboardPage() {
 
     return { topPlayers, recentMatches, allPlayers, distribution, roles, avgByRole, knockoutCount, totalMatches: matches.length };
   }, []);
+
+  const [matchSearch, setMatchSearch] = useState('');
+  const [seasonFilter, setSeasonFilter] = useState('');
+  const seasons = useMemo(() => getSeasons(), []);
+  const allMatches = useMemo(() => getMatches(), []);
+
+  const displayedMatches = useMemo(() => {
+    let list = allMatches;
+    if (seasonFilter) {
+      list = list.filter(m => m.season === seasonFilter);
+    }
+    if (matchSearch.trim()) {
+      const q = matchSearch.toLowerCase().trim();
+      list = list.filter(m =>
+        m.teams.some(t => t.toLowerCase().includes(q)) ||
+        (m.venue && m.venue.toLowerCase().includes(q)) ||
+        (m.city && m.city.toLowerCase().includes(q)) ||
+        (m.playerOfMatch && m.playerOfMatch.toLowerCase().includes(q))
+      );
+    }
+    return list.slice(0, 12);
+  }, [allMatches, seasonFilter, matchSearch]);
 
   const avgImpact = (data.allPlayers.reduce((s, p) => s + p.impactScore, 0) / data.allPlayers.length).toFixed(1);
 
@@ -196,20 +218,53 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Recent Matches */}
+      {/* Match Explorer */}
       <div className="fade-in fade-in-5">
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
           <div>
-            <h2 className="text-[#1a1a2e] text-lg font-semibold">Recent Matches</h2>
-            <p className="text-[#b0b8c4] text-xs mt-0.5">Latest matches and player performances</p>
+            <h2 className="text-[#1a1a2e] text-lg font-semibold">Match Explorer</h2>
+            <p className="text-[#b0b8c4] text-xs mt-0.5">Explore impact across all {data.totalMatches.toLocaleString()} matches</p>
           </div>
-          <span className="text-xs text-[#94a3b8] font-medium">LATEST 6</span>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <input
+              type="text"
+              placeholder="Search team, venue, MVP..."
+              value={matchSearch}
+              onChange={e => setMatchSearch(e.target.value)}
+              className="px-3 py-1.5 bg-white border border-black/[0.08] rounded-xl text-[#1a1a2e] placeholder-[#b0b8c4] text-xs focus:outline-none focus:ring-2 focus:ring-[#e63946]/20 w-48 sm:w-56 shadow-sm transition-all"
+            />
+            <select
+              value={seasonFilter}
+              onChange={e => setSeasonFilter(e.target.value)}
+              className="px-2.5 py-1.5 bg-white border border-black/[0.08] rounded-xl text-[#475569] text-xs focus:outline-none focus:ring-2 focus:ring-[#e63946]/20 cursor-pointer shadow-sm transition-all"
+            >
+              <option value="">All Seasons</option>
+              {seasons.map(s => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+            {(matchSearch || seasonFilter) && (
+              <button
+                onClick={() => { setMatchSearch(''); setSeasonFilter(''); }}
+                className="text-xs text-[#94a3b8] hover:text-[#ef4444] font-medium transition-colors"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.recentMatches.map(match => (
-            <MatchSummary key={match.matchId} match={match} />
-          ))}
-        </div>
+
+        {displayedMatches.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {displayedMatches.map(match => (
+              <MatchSummary key={match.matchId} match={match} />
+            ))}
+          </div>
+        ) : (
+          <div className="bg-white border border-black/[0.06] rounded-2xl p-8 text-center text-[#94a3b8] text-sm shadow-sm">
+            No matches found matching your search.
+          </div>
+        )}
       </div>
     </div>
   );
