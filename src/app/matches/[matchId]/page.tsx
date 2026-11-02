@@ -34,8 +34,8 @@ export default function MatchAnalyzerPage() {
   const { match, impactPlayers, team1Players, team2Players } = data;
   const team1 = match.teams[0];
   const team2 = match.teams[1];
-  const inn1 = match.innings?.[0];
-  const inn2 = match.innings?.[1];
+  const inn1 = match.innings?.find(i => i.battingTeam === team1);
+  const inn2 = match.innings?.find(i => i.battingTeam === team2);
 
   return (
     <div className="max-w-[1400px] mx-auto px-6 py-8">

@@ -12,8 +12,8 @@ interface MatchSummaryProps {
 export default function MatchSummary({ match, compact = false }: MatchSummaryProps) {
   const team1 = match.teams[0];
   const team2 = match.teams[1];
-  const inn1 = match.innings?.[0];
-  const inn2 = match.innings?.[1];
+  const inn1 = match.innings?.find(i => i.battingTeam === team1);
+  const inn2 = match.innings?.find(i => i.battingTeam === team2);
 
   return (
     <Link href={`/matches/${match.matchId}`}>
