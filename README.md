@@ -46,8 +46,8 @@ All weights are **learned from real data** by an XGBoost model trained on 1,169 
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/your-username/cricket-impact.git
-cd cricket-impact
+git clone https://github.com/prachizala/CricketIQ-Project.git
+cd CricketIQ-Project
 npm install
 ```
 
