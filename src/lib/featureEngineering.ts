@@ -40,9 +40,7 @@ export function extractBattingFeatures(innings: BattingInnings): BattingFeatures
     fours: innings.fours,
     sixes: innings.sixes,
     boundaries: innings.fours + innings.sixes,
-    dotBallPercentage: innings.ballsFaced > 0
-      ? ((innings.ballsFaced - innings.runs) / innings.ballsFaced) * 100
-      : 0,
+    dotBallPercentage: innings.dotBallPct ?? 0,
   };
 }
 
