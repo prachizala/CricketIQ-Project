@@ -4,11 +4,11 @@ import { calculatePlayerImpact, calculateMatchImpact } from './impactEngine';
 // Import preprocessed data
 import matchesJson from '@/data/matches.json';
 import playerInningsJson from '@/data/playerInnings.json';
+import leaderboardJson from '@/data/leaderboard.json';
 
 const matchesData = matchesJson as unknown as MatchData[];
 const playerInningsData = playerInningsJson as unknown as Record<string, PlayerData>;
-
-let _playerImpactCache: PlayerImpact[] | null = null;
+const leaderboardData = leaderboardJson as unknown as PlayerImpact[];
 
 export function getMatches(): MatchData[] {
   return matchesData;
@@ -31,19 +31,7 @@ export function getPlayerData(name: string): PlayerData | undefined {
 }
 
 export function getAllPlayerImpacts(): PlayerImpact[] {
-  if (_playerImpactCache) return _playerImpactCache;
-
-  const impacts: PlayerImpact[] = [];
-  for (const [name, data] of Object.entries(playerInningsData)) {
-    // Only include players with meaningful data (at least 5 matches)
-    const matchIds = new Set(data.innings.map(i => i.matchId));
-    if (matchIds.size >= 5) {
-      impacts.push(calculatePlayerImpact(name, data));
-    }
-  }
-
-  _playerImpactCache = impacts.sort((a, b) => b.impactScore - a.impactScore);
-  return _playerImpactCache;
+  return leaderboardData;
 }
 
 export function getTopPlayers(n: number = 10): PlayerImpact[] {
