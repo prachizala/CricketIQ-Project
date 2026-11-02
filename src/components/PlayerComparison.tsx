@@ -15,14 +15,31 @@ interface PlayerComparisonProps {
 export default function PlayerComparison({ player1, player2 }: PlayerComparisonProps) {
   const normalize = (val: number, max: number) => Math.min(100, (val / max) * 100);
 
-  const radarData = [
-    { metric: 'Impact', [player1.name]: player1.impactScore, [player2.name]: player2.impactScore },
-    { metric: 'Strike Rate', [player1.name]: normalize(player1.strikeRate, 200), [player2.name]: normalize(player2.strikeRate, 200) },
-    { metric: 'Win Rate', [player1.name]: player1.winRate, [player2.name]: player2.winRate },
-    { metric: 'Consistency', [player1.name]: getConsistency(player1.recentForm), [player2.name]: getConsistency(player2.recentForm) },
-    { metric: 'Experience', [player1.name]: normalize(player1.matchesPlayed, 200), [player2.name]: normalize(player2.matchesPlayed, 200) },
-    { metric: 'Batting Avg', [player1.name]: normalize(player1.battingAvg, 60), [player2.name]: normalize(player2.battingAvg, 60) },
-  ];
+  const isBowlerComp = player1.role === 'bowler' && player2.role === 'bowler';
+  const hasBowler = player1.role === 'bowler' || player2.role === 'bowler';
+
+  // Inverted economy metric (lower economy = higher score out of 100)
+  const normEconomy = (eco: number) => eco > 0 ? Math.min(100, Math.max(0, (12 - eco) * 10)) : 50;
+  // Inverted bowling average (lower avg = higher score out of 100)
+  const normBowlAvg = (avg: number) => (avg > 0 && avg < 100) ? Math.min(100, Math.max(0, (45 - avg) * 2.5)) : 50;
+
+  const radarData = isBowlerComp
+    ? [
+        { metric: 'Impact', [player1.name]: player1.impactScore, [player2.name]: player2.impactScore },
+        { metric: 'Economy Control', [player1.name]: normEconomy(player1.economy), [player2.name]: normEconomy(player2.economy) },
+        { metric: 'Win Rate', [player1.name]: player1.winRate, [player2.name]: player2.winRate },
+        { metric: 'Consistency', [player1.name]: getConsistency(player1.recentForm), [player2.name]: getConsistency(player2.recentForm) },
+        { metric: 'Experience', [player1.name]: normalize(player1.matchesPlayed, 200), [player2.name]: normalize(player2.matchesPlayed, 200) },
+        { metric: 'Bowling Avg', [player1.name]: normBowlAvg(player1.bowlingAvg), [player2.name]: normBowlAvg(player2.bowlingAvg) },
+      ]
+    : [
+        { metric: 'Impact', [player1.name]: player1.impactScore, [player2.name]: player2.impactScore },
+        { metric: hasBowler ? 'Economy Control' : 'Strike Rate', [player1.name]: hasBowler ? normEconomy(player1.economy) : normalize(player1.strikeRate, 200), [player2.name]: hasBowler ? normEconomy(player2.economy) : normalize(player2.strikeRate, 200) },
+        { metric: 'Win Rate', [player1.name]: player1.winRate, [player2.name]: player2.winRate },
+        { metric: 'Consistency', [player1.name]: getConsistency(player1.recentForm), [player2.name]: getConsistency(player2.recentForm) },
+        { metric: 'Experience', [player1.name]: normalize(player1.matchesPlayed, 200), [player2.name]: normalize(player2.matchesPlayed, 200) },
+        { metric: hasBowler ? 'Bowling Avg' : 'Batting Avg', [player1.name]: hasBowler ? normBowlAvg(player1.bowlingAvg) : normalize(player1.battingAvg, 60), [player2.name]: hasBowler ? normBowlAvg(player2.bowlingAvg) : normalize(player2.battingAvg, 60) },
+      ];
 
   return (
     <div>
