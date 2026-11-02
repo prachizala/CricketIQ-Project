@@ -1,0 +1,250 @@
+CRICKETIQ — PITCH DECK OUTLINE
+================================
+
+
+SLIDE 1: TITLE
+--------------
+CricketIQ — The Smartest Way to Measure Player Impact
+Tagline: "Not just what they scored. What they changed."
+Team Name | CricHeroes Hackathon 2025
+
+
+SLIDE 2: THE PROBLEM
+---------------------
+Title: "Cricket Stats Lie"
+
+Show two players side by side:
+
+  Player A: 80 runs off 70 balls          Player B: 35 runs off 18 balls
+  League match, team lost by 50 runs       IPL Final, chasing 175, 3 wickets left
+  Traditional stat: "Great innings"        Traditional stat: "Decent cameo"
+
+  CricketIQ Impact: 42 (Average)          CricketIQ Impact: 91 (Elite)
+
+The point: Traditional stats treat both the same. CricketIQ knows the difference.
+
+Key problems with current stats:
+  - Runs/wickets ignore WHEN they happened
+  - No credit for pressure situations
+  - League match = IPL Final (same weight)
+  - Bowling impact is basically ignored
+
+
+SLIDE 3: OUR SOLUTION
+----------------------
+Title: "One Number That Tells the Truth"
+
+Impact Score (0-100) = Performance x Context x Pressure x Knockout
+
+Show a simple visual of the four pillars:
+
+  [PERFORMANCE]     [CONTEXT]        [PRESSURE]       [KNOCKOUT]
+  What did you do?  When did you     How tough was     What was
+  Runs, wickets,    do it?           the situation?    at stake?
+  strike rate,      Powerplay vs     RRR, wickets      League vs
+  boundaries,       death overs,     left, defending   Final
+  economy           chasing          low totals
+
+
+SLIDE 4: HOW IT WORKS (Keep it visual, minimal text)
+-----------------------------------------------------
+Title: "The Engine Behind the Score"
+
+Show a flow diagram:
+
+  Ball-by-ball data (1,169 IPL matches)
+       |
+       v
+  Feature Extraction (39 features per innings)
+       |
+       v
+  ML Model (XGBoost) learns what ACTUALLY predicts winning
+       |
+       v
+  Impact Score = Performance x Context x Pressure x Knockout
+       |
+       v
+  Normalized 0-100 with full SHAP explainability
+
+
+SLIDE 5: THE ML ADVANTAGE
+--------------------------
+Title: "We Guessed. Then the Data Corrected Us."
+
+Show the comparison table:
+
+  Factor                    Our Guess    ML Learned     Surprise
+  ----------------------------------------------------------------
+  Death overs multiplier    1.5x         1.05x          Less than we thought
+  Middle overs multiplier   1.2x         1.07x          Still matters
+  Runs importance           Moderate     44%            Way more important
+  Balls faced               Low          14%            Staying in = key
+  Wickets (bowling)         High         42%            Confirmed #1
+
+  Batting Model Accuracy: 79%
+  Bowling Model Accuracy: 60%
+
+Takeaway: "The model found patterns we couldn't see as cricket fans."
+
+
+SLIDE 6: REAL CRICKET PROOF
+----------------------------
+Title: "Does It Pass the Eye Test?"
+
+Show 3-4 real examples from the app with actual player names:
+
+  Example 1: [Top batsman from leaderboard]
+  - What they did: [stats]
+  - Why CricketIQ rated them high: [context + pressure]
+  - Impact: XX (Elite)
+
+  Example 2: [A bowler who defended a low total]
+  - What they did: [stats]
+  - Why CricketIQ rated them high: [defending pressure bonus]
+  - Impact: XX (Elite)
+
+  Example 3: [A big scorer who got a moderate rating]
+  - What they did: [scored big but no pressure, league match]
+  - Why CricketIQ didn't overrate them: [low context, low pressure]
+  - Impact: XX (Average)
+
+The point: "It matches what a cricket expert would say — but with data backing."
+
+
+SLIDE 7: EXPLAINABILITY (SHAP)
+-------------------------------
+Title: "No Black Box — Every Score is Transparent"
+
+Show a SHAP waterfall chart screenshot from the app:
+
+  Average player baseline:       50.0
+  + Runs Scored:                +15.3  [green bar]
+  + Strike Rate:                 +8.1  [green bar]
+  + Death Over Runs:             +5.2  [green bar]
+  - Dot Ball %:                  -2.1  [red bar]
+  - Batting Position:            -1.8  [red bar]
+  = Final Score:                 74.7
+
+"For every player, you can see exactly what helped and what hurt their score."
+
+
+SLIDE 8: LIVE DEMO (or Screenshots)
+-------------------------------------
+Title: "See It In Action"
+
+Show key screens:
+
+  1. DASHBOARD — Overview with impact distribution, top players, role breakdown
+  2. LEADERBOARD — All players ranked by impact with form sparklines
+  3. PLAYER PROFILE — Individual impact score, pressure performance chart,
+     SHAP breakdown, recent innings table
+  4. MODEL PAGE — Full methodology, feature importance charts, ML vs rule-based
+
+
+SLIDE 9: WHAT MAKES US DIFFERENT
+----------------------------------
+Title: "Why CricketIQ Stands Out"
+
+  1. KNOCKOUT AWARE — First metric to weight playoff performances higher
+     (71 knockout matches detected across 18 seasons)
+
+  2. DEFENDING PRESSURE — Bowlers defending 140 get rewarded for tight
+     economy (no other metric does this)
+
+  3. BOWLER PRESSURE — Bowlers aren't just "wickets taken." We model
+     death-over pressure, defending context, and economy contribution
+
+  4. ML-CALIBRATED — Not our opinion. Data from 1,169 matches decides
+     what matters. Our guesses were wrong on death overs (1.5x vs 1.05x)
+
+  5. FULLY EXPLAINABLE — SHAP breakdown for every player. No black box.
+     Judges can verify any score.
+
+  6. ROLLING FORM — Last 10 innings with exponential recency decay.
+     Current form, not career stats.
+
+
+SLIDE 10: SCALE AND DATA
+--------------------------
+Title: "Built on Real Data"
+
+Big numbers (make these visual):
+
+  1,169    IPL matches analyzed
+  17,708   batting innings scored
+  13,878   bowling innings evaluated
+  768      players tracked
+  71       knockout matches detected
+  39       ML features per innings
+  18       IPL seasons covered
+  200      players with full SHAP explainability
+
+
+SLIDE 11: LIMITATIONS (Shows honesty/maturity)
+------------------------------------------------
+Title: "What We'd Add Next"
+
+  Current limitations:
+  - No fielding impact (data doesn't have fielder names)
+  - No venue adjustment (batting-friendly vs bowling pitches)
+  - No team strength factor
+
+  With CricHeroes data, we could add:
+  - Individual fielding (catches, run outs, stumpings)
+  - Venue-adjusted scoring
+  - Opposition strength weighting
+  - Real-time live match impact
+
+
+SLIDE 12: TECH STACK (Quick, one slide)
+----------------------------------------
+Title: "How It's Built"
+
+  Data Pipeline:    IPL CSV -> Node.js preprocessor -> JSON
+  ML Training:      Python + XGBoost + SHAP (runs once)
+  Frontend:         Next.js 16 + React 19 + TypeScript
+  Styling:          Tailwind CSS v4
+  Charts:           Recharts
+  Runtime:          No Python needed — ML weights baked into JSON
+
+
+SLIDE 13: CLOSING
+------------------
+Title: "One Number. The Full Story."
+
+Restate the core idea:
+
+  "Traditional stats tell you WHAT happened.
+   CricketIQ tells you WHAT IT MEANT."
+
+  Impact = Performance x Context x Pressure x Knockout
+  Trained on 1,169 IPL matches. Explained by SHAP. Scored 0-100.
+
+Team Name | Demo Link | GitHub
+
+
+=========================================
+TIPS FOR PRESENTING:
+=========================================
+
+1. LEAD WITH THE PROBLEM (Slide 2) — The two-player comparison hooks
+   the audience immediately. Everyone who watches cricket will "get it."
+
+2. KEEP ML SIMPLE — Don't explain XGBoost internals. Just say "we fed
+   1,169 matches into a computer and it told us our guesses were wrong."
+   The comparison table (Slide 5) is your strongest ML slide.
+
+3. SHOW REAL EXAMPLES — Slide 6 is where judges decide if your metric
+   makes cricket sense. Pick examples that match intuition.
+
+4. DEMO > SLIDES — If you can show the live app, do it. The SHAP
+   waterfall chart and player profiles are impressive in person.
+
+5. OWN THE LIMITATIONS — Slide 11 shows maturity. Mentors love when
+   teams know what they'd improve.
+
+6. TIME SPLIT (if 10 minutes):
+   - Problem + Solution: 2 min
+   - How it works + ML: 3 min
+   - Real examples + Demo: 3 min
+   - Differentiators + Closing: 2 min

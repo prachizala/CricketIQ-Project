@@ -1,0 +1,84 @@
+{
+  "batting_weights": {
+    "runs": 0.4428,
+    "balls_faced": 0.1323,
+    "strike_rate": 0.0223,
+    "fours": 0.0173,
+    "sixes": 0.0147,
+    "is_out": 0.0309,
+    "is_chasing": 0.0405,
+    "required_run_rate": 0.0184,
+    "wickets_remaining": 0.0475,
+    "boundary_pct": 0.0182,
+    "dot_ball_pct": 0.0144,
+    "runs_in_powerplay": 0.0165,
+    "runs_in_middle": 0.0185,
+    "runs_in_death": 0.0165,
+    "balls_in_powerplay": 0.0147,
+    "balls_in_middle": 0.0152,
+    "balls_in_death": 0.0167,
+    "batting_position": 0.0157,
+    "run_rate_diff": 0.0366,
+    "is_knockout": 0.0141,
+    "first_innings_total": 0.0361
+  },
+  "bowling_weights": {
+    "wickets": 0.4198,
+    "runs_conceded": 0.0227,
+    "balls_bowled": 0.0271,
+    "dot_balls": 0.0179,
+    "economy": 0.0205,
+    "is_chasing": 0.0641,
+    "dot_ball_pct": 0.0188,
+    "wickets_in_powerplay": 0.0651,
+    "wickets_in_middle": 0.0876,
+    "wickets_in_death": 0.0645,
+    "runs_in_powerplay": 0.0229,
+    "runs_in_middle": 0.0205,
+    "runs_in_death": 0.0208,
+    "balls_in_powerplay": 0.0209,
+    "balls_in_middle": 0.0173,
+    "balls_in_death": 0.0261,
+    "is_knockout": 0.0329,
+    "first_innings_total": 0.0304
+  },
+  "context_multipliers": {
+    "powerplay": 1.0,
+    "middle": 1.08,
+    "death": 1.06,
+    "chasing": 1.04
+  },
+  "pressure_multipliers": {
+    "rrr_high": 1.07,
+    "rrr_medium": 1.04,
+    "wickets_low": 0.1
+  },
+  "model_metrics": {
+    "batting": {
+      "r2": 0.7797,
+      "mae": 2.85,
+      "rmse": 5.54,
+      "cv_r2_mean": 0.7718,
+      "cv_r2_std": 0.0182,
+      "train_samples": 14166,
+      "test_samples": 3542
+    },
+    "bowling": {
+      "r2": 0.5971,
+      "mae": 3.42,
+      "rmse": 6.91,
+      "cv_r2_mean": 0.6111,
+      "cv_r2_std": 0.0371,
+      "train_samples": 11102,
+      "test_samples": 2776
+    }
+  },
+  "training_info": {
+    "model": "XGBoost",
+    "total_matches": 1169,
+    "total_batting_innings": 17708,
+    "total_bowling_innings": 13878,
+    "features_batting": 21,
+    "features_bowling": 18
+  }
+}

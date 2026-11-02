@@ -1,0 +1,236 @@
+[
+  {
+    "feature": "runs",
+    "importance": 0.4428,
+    "label": "Runs Scored",
+    "category": "batting"
+  },
+  {
+    "feature": "balls_faced",
+    "importance": 0.1323,
+    "label": "Balls Faced",
+    "category": "batting"
+  },
+  {
+    "feature": "wickets_remaining",
+    "importance": 0.0475,
+    "label": "Wickets Remaining",
+    "category": "batting"
+  },
+  {
+    "feature": "is_chasing",
+    "importance": 0.0405,
+    "label": "Chasing",
+    "category": "batting"
+  },
+  {
+    "feature": "run_rate_diff",
+    "importance": 0.0366,
+    "label": "Run Rate Differential",
+    "category": "batting"
+  },
+  {
+    "feature": "first_innings_total",
+    "importance": 0.0361,
+    "label": "First Innings Total",
+    "category": "batting"
+  },
+  {
+    "feature": "is_out",
+    "importance": 0.0309,
+    "label": "Dismissed",
+    "category": "batting"
+  },
+  {
+    "feature": "strike_rate",
+    "importance": 0.0223,
+    "label": "Strike Rate",
+    "category": "batting"
+  },
+  {
+    "feature": "runs_in_middle",
+    "importance": 0.0185,
+    "label": "Middle Over Runs",
+    "category": "batting"
+  },
+  {
+    "feature": "required_run_rate",
+    "importance": 0.0184,
+    "label": "Required Run Rate",
+    "category": "batting"
+  },
+  {
+    "feature": "boundary_pct",
+    "importance": 0.0182,
+    "label": "Boundary %",
+    "category": "batting"
+  },
+  {
+    "feature": "fours",
+    "importance": 0.0173,
+    "label": "Fours",
+    "category": "batting"
+  },
+  {
+    "feature": "balls_in_death",
+    "importance": 0.0167,
+    "label": "Death Over Balls",
+    "category": "batting"
+  },
+  {
+    "feature": "runs_in_powerplay",
+    "importance": 0.0165,
+    "label": "Powerplay Runs",
+    "category": "batting"
+  },
+  {
+    "feature": "runs_in_death",
+    "importance": 0.0165,
+    "label": "Death Over Runs",
+    "category": "batting"
+  },
+  {
+    "feature": "batting_position",
+    "importance": 0.0157,
+    "label": "Batting Position",
+    "category": "batting"
+  },
+  {
+    "feature": "balls_in_middle",
+    "importance": 0.0152,
+    "label": "Middle Over Balls",
+    "category": "batting"
+  },
+  {
+    "feature": "sixes",
+    "importance": 0.0147,
+    "label": "Sixes",
+    "category": "batting"
+  },
+  {
+    "feature": "balls_in_powerplay",
+    "importance": 0.0147,
+    "label": "Powerplay Balls",
+    "category": "batting"
+  },
+  {
+    "feature": "dot_ball_pct",
+    "importance": 0.0144,
+    "label": "Dot Ball %",
+    "category": "batting"
+  },
+  {
+    "feature": "is_knockout",
+    "importance": 0.0141,
+    "label": "Knockout Match",
+    "category": "batting"
+  },
+  {
+    "feature": "wickets",
+    "importance": 0.4198,
+    "label": "Wickets Taken",
+    "category": "bowling"
+  },
+  {
+    "feature": "wickets_in_middle",
+    "importance": 0.0876,
+    "label": "Middle Over Wickets",
+    "category": "bowling"
+  },
+  {
+    "feature": "wickets_in_powerplay",
+    "importance": 0.0651,
+    "label": "Powerplay Wickets",
+    "category": "bowling"
+  },
+  {
+    "feature": "wickets_in_death",
+    "importance": 0.0645,
+    "label": "Death Over Wickets",
+    "category": "bowling"
+  },
+  {
+    "feature": "is_chasing",
+    "importance": 0.0641,
+    "label": "Chasing",
+    "category": "bowling"
+  },
+  {
+    "feature": "is_knockout",
+    "importance": 0.0329,
+    "label": "Knockout Match",
+    "category": "bowling"
+  },
+  {
+    "feature": "first_innings_total",
+    "importance": 0.0304,
+    "label": "First Innings Total",
+    "category": "bowling"
+  },
+  {
+    "feature": "balls_bowled",
+    "importance": 0.0271,
+    "label": "Balls Bowled",
+    "category": "bowling"
+  },
+  {
+    "feature": "balls_in_death",
+    "importance": 0.0261,
+    "label": "Death Over Balls",
+    "category": "bowling"
+  },
+  {
+    "feature": "runs_in_powerplay",
+    "importance": 0.0229,
+    "label": "Powerplay Runs",
+    "category": "bowling"
+  },
+  {
+    "feature": "runs_conceded",
+    "importance": 0.0227,
+    "label": "Runs Conceded",
+    "category": "bowling"
+  },
+  {
+    "feature": "balls_in_powerplay",
+    "importance": 0.0209,
+    "label": "Powerplay Balls",
+    "category": "bowling"
+  },
+  {
+    "feature": "runs_in_death",
+    "importance": 0.0208,
+    "label": "Death Over Runs",
+    "category": "bowling"
+  },
+  {
+    "feature": "economy",
+    "importance": 0.0205,
+    "label": "Economy Rate",
+    "category": "bowling"
+  },
+  {
+    "feature": "runs_in_middle",
+    "importance": 0.0205,
+    "label": "Middle Over Runs",
+    "category": "bowling"
+  },
+  {
+    "feature": "dot_ball_pct",
+    "importance": 0.0188,
+    "label": "Dot Ball %",
+    "category": "bowling"
+  },
+  {
+    "feature": "dot_balls",
+    "importance": 0.0179,
+    "label": "Dot Balls",
+    "category": "bowling"
+  },
+  {
+    "feature": "balls_in_middle",
+    "importance": 0.0173,
+    "label": "Middle Over Balls",
+    "category": "bowling"
+  }
+]

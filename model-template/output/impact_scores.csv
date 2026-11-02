@@ -1,0 +1,9 @@
+player,match_id,type,xgb_raw_prediction,performance_score,context_weight,pressure_weight,knockout_mult,raw_impact,impact_score
+V Kohli,1234,batting,37.74,119.66,1.1232,1.04,1.0,139.78,93.0
+RG Sharma,1234,batting,23.52,69.25,1.04,1.04,1.0,74.9,71.2
+MS Dhoni,1235,batting,13.77,82.28,1.1024,1.27,1.15,132.48,91.7
+KL Rahul,1236,batting,6.98,23.77,1.0,1.0,1.0,23.77,39.6
+JJ Bumrah,1234,bowling,18.43,87.39,1.0,1.0,1.0,87.39,85.6
+R Ashwin,1235,bowling,12.82,53.67,1.0,1.0,1.15,61.72,73.3
+YS Chahal,1236,bowling,10.66,42.68,1.0,1.0,1.0,42.68,60.8
+T Natarajan,1237,bowling,14.17,60.01,1.0,1.0,1.0,60.01,72.3
