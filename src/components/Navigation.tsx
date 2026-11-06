@@ -12,6 +12,7 @@ const navItems = [
   { label: 'Matchups', href: '/matchups' },
   { label: 'Venues', href: '/venues' },
   { label: 'Clutch Index', href: '/clutch-index' },
+  { label: 'Fantasy XI', href: '/fantasy-predictor' },
   { label: 'Simulator', href: '/simulator' },
   { label: 'Auction XI', href: '/auction-optimizer' },
   { label: 'AI Scout', href: '/scout' },

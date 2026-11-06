@@ -34,6 +34,7 @@ export default function RootLayout({
               <Link href="/matchups" className="hover:text-[#e63946] transition-colors">Matchups</Link>
               <Link href="/venues" className="hover:text-[#e63946] transition-colors">Venues</Link>
               <Link href="/clutch-index" className="hover:text-[#e63946] transition-colors">Clutch Index</Link>
+              <Link href="/fantasy-predictor" className="hover:text-[#e63946] transition-colors">Fantasy XI</Link>
               <Link href="/simulator" className="hover:text-[#e63946] transition-colors">Simulator</Link>
               <Link href="/auction-optimizer" className="hover:text-[#e63946] transition-colors">Auction XI</Link>
               <Link href="/scout" className="hover:text-[#e63946] transition-colors">AI Scout</Link>
