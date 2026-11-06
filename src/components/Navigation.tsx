@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Leaderboard', href: '/leaderboard' },
   { label: 'Compare', href: '/compare' },
+  { label: 'Matchups', href: '/matchups' },
   { label: 'Simulator', href: '/simulator' },
   { label: 'Auction XI', href: '/auction-optimizer' },
   { label: 'AI Scout', href: '/scout' },

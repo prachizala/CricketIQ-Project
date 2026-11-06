@@ -31,6 +31,7 @@ export default function RootLayout({
               <Link href="/dashboard" className="hover:text-[#e63946] transition-colors">Dashboard</Link>
               <Link href="/leaderboard" className="hover:text-[#e63946] transition-colors">Leaderboard</Link>
               <Link href="/compare" className="hover:text-[#e63946] transition-colors">Compare</Link>
+              <Link href="/matchups" className="hover:text-[#e63946] transition-colors">Matchups</Link>
               <Link href="/simulator" className="hover:text-[#e63946] transition-colors">Simulator</Link>
               <Link href="/auction-optimizer" className="hover:text-[#e63946] transition-colors">Auction XI</Link>
               <Link href="/scout" className="hover:text-[#e63946] transition-colors">AI Scout</Link>
