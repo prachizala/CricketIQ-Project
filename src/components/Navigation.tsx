@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Compare', href: '/compare' },
   { label: 'Simulator', href: '/simulator' },
   { label: 'Auction XI', href: '/auction-optimizer' },
+  { label: 'AI Scout', href: '/scout' },
   { label: 'How It Works', href: '/how-it-works' },
 ];
 
