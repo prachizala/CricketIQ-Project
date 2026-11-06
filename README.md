@@ -35,6 +35,23 @@ All weights are **learned from real data** by an XGBoost model trained on 1,169 
 
 ---
 
+## 🚀 Advanced Analytics Modules
+
+CricketIQ includes 8 dedicated interactive modules for deep sports analytics:
+
+| Module | Route | What It Does |
+|--------|-------|--------------|
+| **Fantasy Captaincy & Smart XI** | `/fantasy-predictor` | Projects venue-adjusted fantasy points (PFP) and algorithmically recommends optimal Captain (2x) & Vice-Captain (1.5x) picks. |
+| **Clutch vs Flat-Track Index** | `/clutch-index` | 2D crisis resilience scatter plot categorizing players into Clutch Heroes vs Flat-Track Accumulators. |
+| **Stadium Intelligence** | `/venues` | Venue par score normalizer, toss advantage trends, and ground dimension analytics. |
+| **H2H Tactical Matchups** | `/matchups` | Head-to-head batter vs bowler faceoffs with dismissal counts, strike rates, and vulnerability scoring. |
+| **What-If Match Simulator** | `/simulator` | Counterfactual match replay engine evaluating impact score deltas under altered scenarios. |
+| **IPL Auction Purse Optimizer** | `/auction-optimizer` | 100 Cr purse solver and player Fair Market Value / Return-on-Investment (ROI) auditor. |
+| **AI Tactical Scout** | `/scout` | Natural language query search engine for scouting phase specialists, anchors, and death bowlers. |
+| **Win Probability Added (WPA)** | `/matches/[id]` | Over-by-over live win probability curve and match turning point detector. |
+
+---
+
 ## Quick Start
 
 ### Prerequisites
@@ -396,13 +413,20 @@ cricket-impact/
 │   │   └── PressureTimeline.tsx
 │   │
 │   └── app/
-│       ├── page.tsx            # Landing — formula + methodology
-│       ├── dashboard/          # Overview + charts + top players
-│       ├── leaderboard/        # Ranked players with sparklines
+│       ├── page.tsx            # Landing — formula + advanced modules showcase
+│       ├── dashboard/          # Overview + charts + top players + search filters
+│       ├── leaderboard/        # Ranked players with sparklines & CSV export
 │       ├── model/              # Full ML methodology page
 │       ├── players/[playerId]/ # Individual player profile + SHAP
-│       ├── matches/[matchId]/  # Match impact breakdown
-│       └── compare/            # Side-by-side player comparison
+│       ├── matches/[matchId]/  # Match impact breakdown + WPA timeline curve
+│       ├── compare/            # Side-by-side batting & bowling radar comparison
+│       ├── matchups/           # Batter vs Bowler head-to-head tactical matrix
+│       ├── venues/             # Stadium intelligence & venue par normalizer
+│       ├── clutch-index/       # Clutch vs Flat-Track 2D crisis resilience matrix
+│       ├── fantasy-predictor/  # Fantasy Captaincy & Smart XI predictor (Dream11)
+│       ├── simulator/          # Interactive what-if match simulator
+│       ├── auction-optimizer/  # IPL mega-auction purse optimizer & ROI valuation
+│       └── scout/              # AI tactical scouting assistant (Natural Language)
 │
 └── ipl_male_csv2/              # Raw IPL ball-by-ball data
     ├── {matchId}.csv           # Ball data
