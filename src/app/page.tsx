@@ -237,8 +237,119 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What Makes CricketIQ Different */}
+      {/* Advanced Tactical Intelligence Showcase */}
       <section className="py-20 bg-white border-t border-black/[0.06]">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#e63946]/10 text-[#e63946] text-xs font-semibold tracking-wider mb-4 border border-[#e63946]/20">
+              NEXT-GEN ANALYTICS SUITE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1a1a2e] tracking-tight">
+              Advanced Match <span className="text-[#e63946]">Intelligence Modules</span>
+            </h2>
+            <p className="text-[#64748b] text-sm sm:text-base mt-3 max-w-2xl mx-auto">
+              From head-to-head tactical matchups to ML-driven fantasy optimization and crisis resilience tracking — explore our complete sports analytics ecosystem.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                title: 'Fantasy Smart XI Predictor',
+                href: '/fantasy-predictor',
+                badge: 'Dream11 Ready',
+                badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                desc: 'Project venue-adjusted fantasy points and compute optimal Captain (2x) & Vice-Captain (1.5x) picks.',
+                icon: '⚡',
+              },
+              {
+                title: 'Clutch vs Flat-Track Index',
+                href: '/clutch-index',
+                badge: 'Resilience Matrix',
+                badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
+                desc: '2D crisis scatter plot separating high-leverage clutch heroes from low-pressure flat-track accumulators.',
+                icon: '🛡️',
+              },
+              {
+                title: 'Stadium Intelligence',
+                href: '/venues',
+                badge: 'Venue Par Normalizer',
+                badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+                desc: 'Boundary sizes, toss advantage curves, and par-score normalizer across all premier IPL grounds.',
+                icon: '🏟️',
+              },
+              {
+                title: 'H2H Tactical Matchups',
+                href: '/matchups',
+                badge: 'Vulnerability Matrix',
+                badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
+                desc: 'Historical head-to-head batter vs bowler faceoffs with strike rate, dismissals, and matchup edge rating.',
+                icon: '🎯',
+              },
+              {
+                title: 'What-If Match Simulator',
+                href: '/simulator',
+                badge: 'Counterfactual Engine',
+                badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
+                desc: 'Tweak match events, wickets, or extra boundaries to recalculate real-time counterfactual impact deltas.',
+                icon: '🎲',
+              },
+              {
+                title: 'IPL Auction Purse Optimizer',
+                href: '/auction-optimizer',
+                badge: 'Knapsack XI Solver',
+                badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                desc: 'Algorithmic 100 Cr squad builder with Fair Bid Price and Return-On-Investment (ROI) valuation calculator.',
+                icon: '💰',
+              },
+              {
+                title: 'AI Tactical Scout',
+                href: '/scout',
+                badge: 'Natural Language AI',
+                badgeColor: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+                desc: 'Scout death specialists, powerplay openers, and spin choke bowlers with natural language search queries.',
+                icon: '🤖',
+              },
+              {
+                title: 'Radar Player Compare',
+                href: '/compare',
+                badge: 'Dual Radar Visualizer',
+                badgeColor: 'bg-slate-100 text-slate-700 border-slate-300',
+                desc: 'Multi-axis radar charts comparing batting scoring speed, death finishing, economy, and bowling dot-ball rates.',
+                icon: '📊',
+              },
+            ].map(module => (
+              <Link
+                key={module.title}
+                href={module.href}
+                className="group p-5 rounded-2xl bg-[#fafafa] border border-black/[0.06] hover:border-[#e63946]/40 hover:bg-white hover:shadow-lg hover:shadow-[#e63946]/5 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl">{module.icon}</span>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${module.badgeColor}`}>
+                      {module.badge}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-base text-[#1a1a2e] group-hover:text-[#e63946] transition-colors mb-1.5">
+                    {module.title}
+                  </h3>
+                  <p className="text-xs text-[#64748b] leading-relaxed">
+                    {module.desc}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs font-semibold text-[#e63946]">
+                  <span>Launch Tool</span>
+                  <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What Makes CricketIQ Different */}
+      <section className="py-20 bg-[#f5f7fa] border-t border-black/[0.06]">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-14">
             <span className="inline-block px-3 py-1 rounded-full bg-[#fef0f1] text-[#e63946] text-xs font-semibold tracking-wider mb-4">
@@ -279,7 +390,7 @@ export default function HomePage() {
                 stat: 'Weighted Towards Current Form',
               },
             ].map(item => (
-              <div key={item.title} className="bg-[#fafafa] border border-black/[0.06] rounded-2xl p-6 shadow-sm">
+              <div key={item.title} className="bg-white border border-black/[0.06] rounded-2xl p-6 shadow-sm">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: item.color + '15' }}>
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
                 </div>
@@ -291,21 +402,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-black/[0.06] bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#e63946] to-[#ff4d5a] flex items-center justify-center">
-              <span className="text-white font-bold text-[9px]">IQ</span>
-            </div>
-            <span className="text-sm font-semibold text-[#1a1a2e]">CricketIQ</span>
-          </div>
-          <span className="text-xs text-[#94a3b8]">
-            Not just what they scored. What they changed.
-          </span>
-        </div>
-      </footer>
     </div>
   );
 }
