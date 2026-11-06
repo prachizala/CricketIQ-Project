@@ -1,502 +1,269 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" />
-  <img src="https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react" />
-  <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=for-the-badge&logo=typescript" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss" />
-  <img src="https://img.shields.io/badge/XGBoost-ML-ff6600?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/SHAP-Explainable_AI-22c55e?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-38bdf8?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/XGBoost-Regressor-ff6600?style=for-the-badge" alt="XGBoost" />
+  <img src="https://img.shields.io/badge/SHAP-Explainable_AI-22c55e?style=for-the-badge" alt="SHAP" />
+  <img src="https://img.shields.io/badge/IPL_Data-18_Seasons-blue?style=for-the-badge" alt="IPL Data" />
 </p>
 
-<h1 align="center">CricketIQ</h1>
-<p align="center"><strong>ML-Powered Cricket Impact Metric — Measuring What Performances Actually Meant</strong></p>
+<h1 align="center">🏏 CricketIQ</h1>
+<p align="center">
+  <strong>Next-Gen Machine Learning Cricket Analytics & Match Intelligence Platform</strong><br>
+  <em>Measuring What Performances Actually Meant — Beyond Traditional Counting Stats</em>
+</p>
 
 <p align="center">
-  Built for the <strong>CricHeroes Hackathon 2025</strong> — Impact Metric Track
+  <a href="https://github.com/prachizala/CricketIQ-Project"><strong>GitHub Repository</strong></a> &bull;
+  <a href="#-what-is-cricketiq">Overview</a> &bull;
+  <a href="#-advanced-analytics-suite-8-modules">Feature Modules</a> &bull;
+  <a href="#-the-impact-algorithm--mathematical-formulation">Math & ML Pipeline</a> &bull;
+  <a href="#-quick-start">Quick Start</a> &bull;
+  <a href="#-python-inference-template-rest-api">Standalone Python API</a>
 </p>
 
 ---
 
-## What is CricketIQ?
+## 📖 What is CricketIQ?
 
-CricketIQ measures how much a player **actually influenced a match outcome** — not just what they scored. Every innings gets a score from **0 to 100** using:
+Traditional cricket statistics (batting averages, strike rates, economy rates) treat all runs and wickets identically. A batter scoring an effortless 65* in an already-decided dead rubber gets higher statistical praise than a batter scoring a tense, match-winning 38* under soaring required run rates in a knockout final.
 
-```
-Impact = Performance × Context × Pressure × Knockout
-```
+**CricketIQ** solves this fundamental flaw by replacing crude counting stats with an interpretable, situation-aware **Impact Metric (0 to 100)**:
 
-| Factor | What It Captures |
-|--------|-----------------|
-| **Performance** | Runs, wickets, strike rate, economy, boundaries, dot balls |
-| **Context** | Powerplay vs middle vs death overs, chasing vs setting |
-| **Pressure** | Required run rate, wickets remaining, defending low totals |
-| **Knockout** | 15% boost for playoff/final matches |
+$$\text{Impact} = \text{Performance} \times \text{Context} \times \text{Pressure} \times \text{Knockout}$$
 
-All weights are **learned from real data** by an XGBoost model trained on 1,169 IPL matches. Every score is **fully explainable** through SHAP.
+Trained on **1,169 IPL matches (2008–2024)** and over **31,500+ ball-by-ball innings**, CricketIQ uses **XGBoost Regressors** and **SHAP (SHapley Additive exPlanations)** to objectively evaluate every delivery, phase leverage, match stakes, and crisis pressure.
 
 ---
 
-## 🚀 Advanced Analytics Modules
+## 🚀 Advanced Analytics Suite (8 Modules)
 
-CricketIQ includes 8 dedicated interactive modules for deep sports analytics:
+CricketIQ features 8 interactive, production-grade sports analytics tools:
 
 | Module | Route | What It Does |
-|--------|-------|--------------|
-| **Fantasy Captaincy & Smart XI** | `/fantasy-predictor` | Projects venue-adjusted fantasy points (PFP) and algorithmically recommends optimal Captain (2x) & Vice-Captain (1.5x) picks. |
-| **Clutch vs Flat-Track Index** | `/clutch-index` | 2D crisis resilience scatter plot categorizing players into Clutch Heroes vs Flat-Track Accumulators. |
-| **Stadium Intelligence** | `/venues` | Venue par score normalizer, toss advantage trends, and ground dimension analytics. |
-| **H2H Tactical Matchups** | `/matchups` | Head-to-head batter vs bowler faceoffs with dismissal counts, strike rates, and vulnerability scoring. |
-| **What-If Match Simulator** | `/simulator` | Counterfactual match replay engine evaluating impact score deltas under altered scenarios. |
-| **IPL Auction Purse Optimizer** | `/auction-optimizer` | 100 Cr purse solver and player Fair Market Value / Return-on-Investment (ROI) auditor. |
-| **AI Tactical Scout** | `/scout` | Natural language query search engine for scouting phase specialists, anchors, and death bowlers. |
-| **Win Probability Added (WPA)** | `/matches/[id]` | Over-by-over live win probability curve and match turning point detector. |
+|---|:---:|---|
+| ⚡ **Fantasy Captaincy & Smart XI** | [`/fantasy-predictor`](#1-fantasy-captaincy--smart-xi-predictor) | Projects venue-adjusted fantasy points (PFP), Dream11 rule constraint solver, optimal Captain (2x) & Vice-Captain (1.5x) picks, and 1-click clipboard lineup exporter. |
+| 🛡️ **Clutch vs Flat-Track Index** | [`/clutch-index`](#2-clutch-vs-flat-track-crisis-index) | Interactive 2D scatter matrix mapping High-Pressure Impact vs Low-Pressure Impact, separating Big-Match Clutch Heroes from Flat-Track Bullies. |
+| 🏟️ **Stadium Intelligence & Par Normalizer** | [`/venues`](#3-stadium-intelligence--venue-par-normalizer) | Ground dimensions, toss advantage curves, pitch behavior traits, and venue-adjusted par score normalization across premier IPL stadiums. |
+| 🎯 **H2H Tactical Matchup Matrix** | [`/matchups`](#4-batter-vs-bowler-head-to-head-matrix) | Granular batter vs bowler faceoffs tracking historical balls faced, strike rates, dismissals, dot ball percentages, and matchup dominance ratings. |
+| 🎲 **What-If Match Simulator** | [`/simulator`](#5-what-if-match-simulator-counterfactual-engine) | Counterfactual match replay engine allowing users to alter boundaries, extra wickets, or run-rate requirements to observe real-time impact delta recalculations. |
+| 💰 **IPL Mega-Auction Purse Optimizer** | [`/auction-optimizer`](#6-ipl-mega-auction-purse-optimizer) | Algorithmic 100 Cr squad knapsack optimizer, Fair Bid Price calculator, and player Return-On-Investment (ROI) valuation auditor. |
+| 🤖 **AI Tactical Scouting Assistant** | [`/scout`](#7-ai-tactical-scouting-assistant) | Natural Language Query (NLQ) search interface enabling scouts and analysts to query death specialists, anchor batters, and powerplay enforcers. |
+| 📈 **Win Probability Added (WPA) Curves** | [`/matches/[id]`](#8-over-by-over-win-probability-added-wpa) | Over-by-over live win probability timeline and automated turning point detector highlighting match-altering shifts. |
 
 ---
 
-## Quick Start
+## 🛠️ Feature Walkthrough
+
+### 1. Fantasy Captaincy & Smart XI Predictor (`/fantasy-predictor`)
+- **Pitch-Calibrated Projections:** Custom modifiers for 6 major venues (e.g. +22% batting boost at Chinnaswamy, +30% spin boost at Chepauk).
+- **Rule Enforcement:** Enforces standard 100-credit budget, 11 players, team limits (max 7 from one team), and role requirements (min 1 WK, 3 BAT, 1 AR, 3 BOWL).
+- **Preset Strategies:** 1-click generation for **Balanced XI**, **Grand League (High Ceiling) XI**, or **Safe Head-to-Head (H2H) XI**.
+- **Captaincy Multipliers:** Recommends optimal Captain (2.0x) and Vice-Captain (1.5x) based on points ceiling vs floor consistency.
+
+### 2. Clutch vs Flat-Track Crisis Index (`/clutch-index`)
+- Evaluates individual temperament by plotting crisis performance (Pressure $\ge 1.25$) against cruise performance (Pressure $< 0.90$).
+- Categorizes players into 4 distinct quadrants:
+  - 🛡️ **Big-Match Clutch Heroes** (High crisis, high cruise impact)
+  - ⚡ **Crisis Specialists** (Low cruise volume, but excels when the team is in trouble)
+  - ☀️ **Flat-Track Dominators** (Exploits weak situations, fades during pressure spikes)
+  - 🔄 **Developing Anchors**
+
+### 3. Stadium Intelligence & Venue Par Normalizer (`/venues`)
+- Normalizes individual scores against venue par totals (e.g. 150 at Chepauk carries higher win equity than 185 at Chinnaswamy).
+- Tracks toss advantage biases (Bat First vs Bowl First win percentages).
+- Provides pitch behavior breakdowns (Batting Paradise, Spin Friendly, Pace & Bounce, Balanced).
+
+### 4. Batter vs Bowler Head-to-Head Matrix (`/matchups`)
+- Search any batter and bowler to inspect historical head-to-head records across 18 IPL seasons.
+- Detailed metrics: Balls faced, runs conceded, strike rate, dismissals, dot ball percentage, and tactical matchup advantage rating.
+
+### 5. What-If Match Simulator (`/simulator`)
+- Select any real IPL innings and simulate counterfactual "What-If" scenarios.
+- Interactive controls: Adjust runs scored, boundaries, dot balls, or wickets conceded.
+- Live recalculation displays how the player's Impact Score and the match outcome delta would have shifted.
+
+### 6. IPL Mega-Auction Purse Optimizer (`/auction-optimizer`)
+- Knapsack squad builder adhering to IPL squad constraints (₹100 Cr budget cap, 11 players, max 4 overseas).
+- Valuation Auditor: Evaluates any player's fair market bid price vs actual auction bids to detect **Overpaid Risks**, **Fair Value Contracts**, and **Steal Buys**.
+
+### 7. AI Tactical Scouting Assistant (`/scout`)
+- Natural language query parser: Type queries like *"death bowlers with low economy"*, *"aggressive powerplay openers"*, or *"spin all-rounders"* to instantly discover matching candidates.
+
+### 8. Over-by-Over Win Probability Added (WPA) (`/matches/[id]`)
+- Over-by-over Win Probability timeline showing how each phase shifted match control.
+- Automatically flags match turning points where single overs produced catastrophic or game-winning win probability swings.
+
+---
+
+## 🧮 The Impact Algorithm & Mathematical Formulation
+
+### 1. The Four-Pillar Equation
+$$\text{Impact} = \text{Performance Score} \times \text{Context Multiplier} \times \text{Pressure Multiplier} \times \text{Knockout Multiplier}$$
+
+### 2. Performance Scoring
+- **Batting ($P_{\text{bat}}$):**
+  $$P_{\text{bat}} = (\text{Runs} \times 0.5 \times w_1) + (\text{SR} \times 0.2 \times w_2) + (\text{Fours} \times 2 \times w_3) + (\text{Sixes} \times 3 \times w_4) + (\text{DeathRuns} \times 0.3 \times w_5)$$
+- **Bowling ($P_{\text{bowl}}$):**
+  $$P_{\text{bowl}} = (\text{Wickets} \times 15 \times w_1) + (\text{DotBalls} \times 1 \times w_2) + (\text{EconomyBonus} \times w_3) + (\text{DeathWickets} \times 5 \times w_4)$$
+  $$\text{EconomyBonus} = \max(0, (8.0 - \text{Economy})) \times 3$$
+
+### 3. Context & Phase Multipliers
+| Match Phase | Overs | Multiplier | Rationale |
+|---|:---:|:---:|---|
+| **Powerplay** | 1 – 6 | 1.00x | Field restrictions, boundary exploitation vs new-ball swing. |
+| **Middle Overs** | 7 – 15 | 1.07x | Spin handling, rotation of strike, and consolidating without losing wickets. |
+| **Death Overs** | 16 – 20 | 1.05x | High-risk boundary hitting and yorker execution. |
+| **Chasing Inning** | 2nd Inn | ×1.04 | Scoreboard pressure penalty & chasing target gravity. |
+
+### 4. Pressure Multiplier
+- **Batters:** Calculated dynamically from Required Run Rate (RRR) and wickets in hand ($RRR > 10 \rightarrow 1.08\times$; Wickets $< 4 \rightarrow +0.09$; capped at $2.0\times$).
+- **Bowlers:** Defending low totals bonus:
+  $$\text{If target} < 160: \quad \text{Defending Pressure} = \max(0, 12 - \frac{\text{Total}}{20})$$
+
+### 5. Knockout Multiplier
+- Playoff, Eliminator, Qualifier, or Final match: **$1.15\times$**
+- Standard league game: **$1.0\times$**
+
+### 6. Sigmoid Normalization (0–100 Scale)
+To prevent unnatural clustering at extremes, scores are mapped using a sigmoid transformation:
+$$\text{Normalized Score} = \frac{100}{1 + e^{-k \cdot (\text{Raw} - \text{Median})}}$$
+- **Batting:** $\text{Median} = 40.0, \quad k = 0.026$
+- **Bowling:** $\text{Median} = 28.0, \quad k = 0.030$
+
+---
+
+## ⚡ Quick Start
 
 ### Prerequisites
+- **Node.js** >= 18.0.0
+- **npm** or **yarn**
 
-- Node.js >= 18
-- Python >= 3.10 (only for ML training — not needed to run the app)
-- npm or yarn
-
-### 1. Clone and Install
-
+### 1. Clone & Install
 ```bash
 git clone https://github.com/prachizala/CricketIQ-Project.git
 cd CricketIQ-Project
 npm install
 ```
 
-### 2. Run the App
-
-The ML weights and preprocessed data are **already included** in `src/data/`. No training needed to run.
-
+### 2. Start Development Server
 ```bash
 npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Open [http://localhost:3000](http://localhost:3000).
-
-### 3. Build for Production
-
+### 3. Production Build
 ```bash
-npx next build
-npx next start
+npm run build
+npm run start
 ```
+
+*Note: All ML weights and 578 player profiles are precomputed in `src/data/`. Zero Python runtime dependency is needed to run the web application!*
 
 ---
 
-## Reproducing the Full Pipeline (Optional)
+## 🐍 Standalone Python Inference & REST API
 
-If you want to regenerate everything from scratch using the raw IPL CSV data:
-
-### Step 1: Preprocess IPL Data
-
-```bash
-node scripts/preprocess.mjs
-```
-
-**Input:** `ipl_male_csv2/` — Ball-by-ball CSVs for 1,169 IPL matches
-**Output:** `src/data/matches.json` + `src/data/playerInnings.json`
-
-This reads every ball from every match and aggregates:
-- Batting stats per player per innings (runs, SR, boundaries, phase splits)
-- Bowling stats per player per innings (wickets, economy, dots, phase splits)
-- Context features (chasing, RRR, wickets remaining, batting position)
-- Knockout detection (last 4 matches per season = playoffs)
-
-### Step 2: Train the ML Model
-
-```bash
-pip install -r scripts/requirements.txt
-python3 scripts/train_model.py
-```
-
-**Input:** `src/data/playerInnings.json` + `src/data/matches.json`
-**Output:**
-- `src/data/model_weights.json` — Learned weights, context/pressure multipliers, model metrics
-- `src/data/feature_importance.json` — 39 features ranked by importance
-- `src/data/shap_values.json` — SHAP explainability data for 200 players
-
-### Step 3: Run the App
-
-```bash
-npm run dev
-```
-
-The Next.js frontend reads the JSON files at build time. **Zero Python dependency at runtime.**
-
-Training also exports `.pkl` models to `model-template/` for standalone inference (see below).
-
----
-
-## Python Inference Template (Plug & Play)
-
-A standalone Python template to run the trained XGBoost model — **no Next.js needed**. Two modes: batch CSV processing or a live REST API.
-
-### Mode 1: CSV Batch
+For data scientists or backend integrations, a standalone Python package is included under `model-template/`:
 
 ```bash
 cd model-template
 pip install -r requirements.txt
-
-# Score all innings in a CSV
-python scripts/run_model.py --input data/sample_input.csv --type both
-
-# Save results
-python scripts/run_model.py --input data/sample_input.csv --type batting --output output/scores.csv
 ```
 
-### Mode 2: REST API
-
+### Run Batch CSV Scoring
 ```bash
-# Start the API server
-python scripts/run_model.py --mode api --port 5000
+python scripts/run_model.py --input data/sample_input.csv --type both --output output/scores.csv
+```
 
-# Score a single innings
+### Launch Flask REST API
+```bash
+python scripts/run_model.py --mode api --port 5000
+```
+
+### Test API via cURL
+```bash
 curl -X POST http://localhost:5000/score \
   -H "Content-Type: application/json" \
-  -d '{"type":"batting","player":"V Kohli","runs":82,"balls_faced":53,"strike_rate":154.7,"fours":8,"sixes":4,"is_out":1,"is_chasing":1,"required_run_rate":9.2,"wickets_remaining":6,"boundary_pct":22.6,"dot_ball_pct":30.2,"runs_in_powerplay":15,"runs_in_middle":42,"runs_in_death":25,"balls_in_powerplay":10,"balls_in_middle":25,"balls_in_death":18,"batting_position":3,"run_rate_diff":1.5,"is_knockout":0,"first_innings_total":175}'
+  -d '{
+    "type": "batting",
+    "player": "V Kohli",
+    "runs": 82,
+    "balls_faced": 53,
+    "strike_rate": 154.7,
+    "fours": 8,
+    "sixes": 4,
+    "is_out": 1,
+    "is_chasing": 1,
+    "required_run_rate": 9.2,
+    "wickets_remaining": 6
+  }'
 ```
-
-**API Endpoints:**
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/score` | Score a single innings (send JSON, get impact back) |
-| `POST` | `/score/batch` | Score multiple innings at once |
-| `GET` | `/health` | Health check |
-
-### What's Inside
-
-```
-model-template/
-├── model/
-│   ├── batting_model.pkl         # Serialized XGBoost batting model
-│   └── bowling_model.pkl         # Serialized XGBoost bowling model
-├── features/
-│   └── feature_engineering.py    # Full 39-feature pipeline (mirrors TypeScript)
-├── scripts/
-│   └── run_model.py              # CLI + API server in one file
-├── data/
-│   ├── sample_input.csv          # Example innings (batting + bowling)
-│   └── model_weights.json        # ML weights for context/pressure
-├── output/                       # Generated impact scores
-├── requirements.txt              # xgboost, pandas, numpy, flask
-└── README.md                     # Detailed usage docs
-```
-
-### How It Works
-
-```
-CSV or JSON → 39 Features → XGBoost .pkl → P × C × W × K → Sigmoid → 0-100 Score
-```
-
-The Python feature engineering mirrors the TypeScript pipeline exactly:
-- **21 batting features** + **18 bowling features**
-- Context weight (phase detection + chasing bonus)
-- Pressure weight (RRR tiers + wickets + bowler defending simulation)
-- Knockout multiplier (1.15x for playoffs)
-- Sigmoid normalization (batting: median=40, bowling: median=28)
-
-### CLI Options
-
-| Flag | Default | Description |
-|------|---------|-------------|
-| `--mode` | `cli` | `cli` (CSV batch) or `api` (REST server) |
-| `--input` | (required in cli) | Path to input CSV |
-| `--type` | `both` | `batting`, `bowling`, or `both` |
-| `--output` | stdout | Save results to CSV file |
-| `--port` | `5000` | API server port (api mode) |
-
-### Response Fields
-
-| Field | Description |
-|-------|-------------|
-| `impact_score` | Final 0-100 normalized score |
-| `performance_score` | Raw ML-weighted performance |
-| `context_weight` | Phase + chasing multiplier |
-| `pressure_weight` | RRR + wickets pressure |
-| `knockout_mult` | 1.15x for playoffs, 1.0x otherwise |
-| `xgb_raw_prediction` | Raw XGBoost model output |
 
 ---
 
-## How the Algorithm Works
-
-### Performance Score
-
-**Batting:**
-```
-score = (runs × 0.5 × w₁) + (strikeRate × 0.2 × w₂) + (fours × 2 × w₃) + (sixes × 3 × w₄) + (deathRuns × 0.3 × w₅)
-```
-
-**Bowling:**
-```
-score = (wickets × 15 × w₁) + (dotBalls × 1 × w₂) + (ecoBonus × w₃) + (deathWickets × 5 × w₄)
-ecoBonus = max(0, (8 - economy)) × 3
-```
-
-Each weight `w` is calibrated by the ML model using dampened ratios:
-```
-w = √(ML_importance / baseline)
-```
-
-This preserves the ML's ranking of what matters while keeping scores stable (sqrt prevents coefficient explosion).
-
-**Defending Pressure Bonus (Bowlers):**
-- Team set < 150 and economy < 6 → bonus = (6 - eco) × 2
-- Team set < 170 and economy < 7 → bonus = (7 - eco) × 1.5
-
-### Context Weight
-
-Determined by which phase the player contributed most balls in:
-
-| Phase | ML Multiplier |
-|-------|------------|
-| Powerplay (1-6) | 1.00x |
-| Middle (7-15) | 1.07x |
-| Death (16-20) | 1.05x |
-| Chasing bonus | ×1.04 |
-
-Phase detection uses **actual ball-by-ball data**, not heuristics.
-
-### Pressure Weight
-
-**Batsmen:**
-
-| Condition | Weight |
-|-----------|--------|
-| RRR > 10 | 1.08x |
-| RRR > 8 | 1.04x |
-| RRR > 6 | 1.02x |
-| Wickets < 4 | +0.09 |
-| Wickets < 6 | +0.045 |
-| Late stage | +0.1 |
-| Max cap | 2.0x |
-
-**Bowlers:** Pressure is simulated based on defending low totals and death-over bowling:
-```
-if defending < 160: pressureRRR = max(0, 12 - total/20)
-if > 40% balls in death: pressureRRR = max(pressureRRR, 8)
-```
-
-### Knockout Multiplier
+## 🏗️ Project Architecture
 
 ```
-Playoff / Eliminator / Final → 1.15x
-League match → 1.0x
-```
-71 knockout matches detected (last 4 matches per season across 18 IPL seasons).
-
-### Normalization
-
-Sigmoid curve (not linear) for natural score spread:
-```
-normalized = 100 / (1 + e^(-steepness × (raw - median)))
-```
-- Batting: median = 40, steepness = 0.026
-- Bowling: median = 28, steepness = 0.030
-
-### Rolling Impact (Player Score)
-
-Weighted average of last 10 innings with exponential recency decay:
-```
-weight = 0.82^(distance from latest)
-```
-Latest innings = 100% weight. 10th oldest = 17% weight. Captures current form.
-
----
-
-## ML Model Details
-
-### Target Variable
-
-```
-Batting: win_factor × min(1.0, player_runs / team_total) × 100
-Bowling: win_factor × min(1.0, 0.6 × wicket_share + 0.4 × economy_contribution) × 100
-```
-
-- Winners = 1.0, close-match losers = 0.55, other losers = 0.35
-- Partial credit prevents "team wins = good, team loses = bad" bias
-
-### Features
-
-| Category | Count | Examples |
-|----------|-------|---------|
-| Batting | 21 | runs, balls_faced, strike_rate, fours, sixes, boundary_pct, dot_ball_pct, phase runs/balls, batting_position, run_rate_diff |
-| Bowling | 18 | wickets, economy, dot_balls, dot_ball_pct, phase wickets/runs/balls |
-| Context | included | is_chasing, is_knockout, first_innings_total |
-| **Total** | **39** | |
-
-### Model Configuration
-
-```python
-XGBRegressor(
-    n_estimators=400,
-    max_depth=6,
-    learning_rate=0.05,
-    subsample=0.8,
-    colsample_bytree=0.8,
-    min_child_weight=3,
-    gamma=0.1
-)
-```
-
-### Performance
-
-| Metric | Batting | Bowling |
-|--------|---------|---------|
-| R² (test) | 0.7868 | 0.5971 |
-| R² (5-fold CV) | 0.7819 ± 0.02 | 0.6111 ± 0.04 |
-| MAE | 2.76 pts | 3.42 pts |
-| RMSE | 5.40 | 6.91 |
-
-### Top Feature Importances
-
-**Batting:** Runs (43.7%) > Balls Faced (13.8%) > Wickets Remaining (4.6%) > Chasing (4.3%) > Run Rate Diff (3.9%)
-
-**Bowling:** Wickets (42.0%) > Middle Over Wickets (8.8%) > Powerplay Wickets (6.5%) > Death Over Wickets (6.5%) > Chasing Context (6.4%)
-
----
-
-## Project Structure
-
-```
-cricket-impact/
-├── scripts/
-│   ├── preprocess.mjs          # IPL CSV → JSON pipeline
-│   ├── train_model.py          # XGBoost training + SHAP + .pkl export
-│   └── requirements.txt        # Python dependencies
-│
-├── model-template/             # Standalone Python inference (plug & play)
-│   ├── model/
-│   │   ├── batting_model.pkl   # Serialized XGBoost batting model
-│   │   └── bowling_model.pkl   # Serialized XGBoost bowling model
-│   ├── features/
-│   │   └── feature_engineering.py  # 39-feature pipeline (mirrors TS)
-│   ├── scripts/
-│   │   └── run_model.py        # CLI: --input, --type, --output
-│   ├── data/
-│   │   ├── sample_input.csv    # Example innings data
-│   │   └── model_weights.json  # ML weights copy
-│   ├── output/                 # Generated impact scores
-│   ├── requirements.txt
-│   └── README.md
-│
+CricketIQ-Project/
 ├── src/
-│   ├── lib/
-│   │   ├── impactEngine.ts     # Core: P × C × W × K scoring
-│   │   ├── featureEngineering.ts # Feature extraction
-│   │   ├── contextDetector.ts  # Phase-based context weights
-│   │   ├── pressureCalculator.ts # RRR/wickets pressure weights
-│   │   ├── types.ts            # TypeScript interfaces
-│   │   ├── dataLoader.ts       # Data access layer
-│   │   └── utils.ts            # Utilities
-│   │
-│   ├── data/
-│   │   ├── matches.json        # 1,169 match records
-│   │   ├── playerInnings.json  # 768 players, all innings
-│   │   ├── model_weights.json  # ML weights + metrics
-│   │   ├── feature_importance.json # 39 features ranked
-│   │   └── shap_values.json    # SHAP for 200 players
-│   │
-│   ├── components/
-│   │   ├── PlayerCard.tsx      # Player summary with sparkline
-│   │   ├── ImpactChart.tsx     # Performance trend charts
-│   │   ├── ImpactMeter.tsx     # Circular score gauge
-│   │   ├── ShapWaterfall.tsx   # SHAP explainability chart
-│   │   ├── LeaderboardTable.tsx
-│   │   ├── MatchSummary.tsx
-│   │   ├── PlayerComparison.tsx
-│   │   └── PressureTimeline.tsx
-│   │
-│   └── app/
-│       ├── page.tsx            # Landing — formula + advanced modules showcase
-│       ├── dashboard/          # Overview + charts + top players + search filters
-│       ├── leaderboard/        # Ranked players with sparklines & CSV export
-│       ├── model/              # Full ML methodology page
-│       ├── players/[playerId]/ # Individual player profile + SHAP
-│       ├── matches/[matchId]/  # Match impact breakdown + WPA timeline curve
-│       ├── compare/            # Side-by-side batting & bowling radar comparison
-│       ├── matchups/           # Batter vs Bowler head-to-head tactical matrix
-│       ├── venues/             # Stadium intelligence & venue par normalizer
-│       ├── clutch-index/       # Clutch vs Flat-Track 2D crisis resilience matrix
-│       ├── fantasy-predictor/  # Fantasy Captaincy & Smart XI predictor (Dream11)
-│       ├── simulator/          # Interactive what-if match simulator
-│       ├── auction-optimizer/  # IPL mega-auction purse optimizer & ROI valuation
-│       └── scout/              # AI tactical scouting assistant (Natural Language)
-│
-└── ipl_male_csv2/              # Raw IPL ball-by-ball data
-    ├── {matchId}.csv           # Ball data
-    └── {matchId}_info.csv      # Match metadata
+│   ├── app/
+│   │   ├── page.tsx               # Homepage — Hero, methodology & module showcase
+│   │   ├── layout.tsx             # Root layout with responsive navigation & footer
+│   │   ├── dashboard/             # League overview, season filter, & match search
+│   │   ├── leaderboard/           # Top impact rankings with sparklines & CSV export
+│   │   ├── compare/               # Side-by-side batting & bowling radar comparison
+│   │   ├── matchups/              # Batter vs bowler tactical faceoff matrix
+│   │   ├── venues/                # Stadium intelligence & venue par normalizer
+│   │   ├── clutch-index/          # 2D crisis resilience scatter plot
+│   │   ├── fantasy-predictor/     # Fantasy Captaincy & Smart XI Dream11 predictor
+│   │   ├── simulator/             # Interactive counterfactual match simulator
+│   │   ├── auction-optimizer/     # IPL 100 Cr purse optimizer & ROI valuation
+│   │   ├── scout/                 # AI tactical scouting assistant (Natural Language)
+│   │   ├── how-it-works/          # Deep-dive methodology & scoring formulas
+│   │   ├── players/[playerId]/    # Individual player career profile & SHAP breakdown
+│   │   └── matches/[matchId]/     # Match impact summary & WPA over-by-over curve
+│   ├── components/                # Reusable UI cards, charts, & navigation
+│   ├── data/                      # Precomputed leaderboard, weights, & match data
+│   └── lib/                       # Feature engineering, ML formulas, & types
+├── model-template/                # Standalone Python inference package & REST API
+├── scripts/                       # Training, preprocessing & extraction scripts
+├── package.json                   # Project metadata & npm dependencies
+└── README.md                      # Comprehensive documentation
 ```
 
 ---
 
-## Key Design Decisions
+## 📊 Dataset & Scale
 
-| Decision | Reasoning |
-|----------|-----------|
-| **Sigmoid normalization** | Linear cap clusters scores. Sigmoid gives natural bell curve — avg = 50, elite = 85+ |
-| **Partial credit for losers** | A player scoring 90 in a loss still performed. Zero credit biases toward team strength |
-| **Sqrt dampening on ML ratios** | Raw ML ratios cause score explosion (4.37x). Sqrt preserves ranking, keeps scores stable |
-| **Exponential recency decay** | 0.82^n makes latest innings 6x more important than oldest. Captures current form |
-| **Bowler pressure simulation** | Previously all bowlers got pressure = 1.0. Now defending low totals and death bowling properly rewarded |
-| **Phase detection from ball data** | Counts actual balls per phase instead of guessing from balls faced |
-| **60/40 bowling target** | Pure wicket target ignores economical bowling. 60% wickets + 40% economy is fairer |
-
----
-
-## Data
-
-| Metric | Value |
-|--------|-------|
-| IPL matches | 1,169 |
-| Batting innings | 17,708 |
-| Bowling innings | 13,878 |
-| Players tracked | 768 |
-| Knockout matches | 71 |
-| Seasons covered | 18 (2008-2024) |
-| ML features | 39 |
-| SHAP profiles | 200 |
+| Metric | Dimension |
+|---|---|
+| **IPL Matches Analyzed** | 1,169 matches |
+| **Ball-by-Ball Records** | ~280,000+ deliveries |
+| **Total Innings Processed** | 31,586 innings (17,708 batting + 13,878 bowling) |
+| **Seasons Covered** | 18 seasons (2008 – 2024) |
+| **Unique Players Tracked** | 768 players |
+| **Engineered Features** | 39 contextual ML features |
+| **Explainable AI Profiles** | 200 SHAP-profiled players |
 
 ---
 
-## Tech Stack
+## 💻 Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 + React 19 |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS v4 |
-| Charts | Recharts 3 |
-| ML Training | Python + XGBoost + SHAP |
-| Data | scikit-learn + pandas + numpy |
-| Inference | Standalone Python CLI (model-template/) |
-| Runtime | Static JSON (no Python needed) |
+- **Frontend Framework:** Next.js 16 (App Router) & React 19
+- **Type Safety:** TypeScript 5
+- **Styling & Design:** Tailwind CSS 4 & Lucide Icons
+- **Data Visualization:** Recharts 3 (Radar charts, Area curves, Bar charts, Scatter plots)
+- **Machine Learning Core:** Python 3.10+, XGBoost Regressors, SHAP
+- **Data Processing:** pandas, NumPy, scikit-learn
 
 ---
 
-## Score Interpretation
+## 📄 License & Attribution
 
-| Score | Label | Meaning |
-|-------|-------|---------|
-| 0-35 | Low | Below average contribution |
-| 35-50 | Average | Standard performance |
-| 50-60 | Good | Above average, solid display |
-| 60-75 | High Impact | Significant game-changer |
-| 75-100 | Elite | Match-winning, best in the league |
-
----
-
-## License
-
-This project was built for the CricHeroes Hackathon 2025.
-
----
+This project is open-source under the MIT License. Developed for sports analytics research, competitive intelligence, and hackathon presentation.
 
 <p align="center">
-  <strong>CricketIQ</strong> — Not just what they scored. What they changed.
+  <strong>CricketIQ</strong> &mdash; <em>Not just what they scored. What they changed.</em>
 </p>

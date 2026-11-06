@@ -1,7 +1,7 @@
 {
   "name": "cricket-iq",
   "version": "0.1.0",
-  "description": "CricketIQ: ML-Powered Cricket Impact Metric measuring real match-winning performance using XGBoost, SHAP and contextual pressure analysis.",
+  "description": "CricketIQ: Next-Generation Machine Learning Sports Analytics & Cricket Intelligence Platform evaluating match-winning impact, crisis temperament, what-if simulations, and fantasy optimization across 18 IPL seasons.",
   "repository": {
     "type": "git",
     "url": "https://github.com/prachizala/CricketIQ-Project.git"
