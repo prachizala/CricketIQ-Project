@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getMatchById, getMatchImpactPlayers, getPlayerData } from '@/lib/dataLoader';
 import { getImpactColor, getImpactLabel, getTeamColor } from '@/lib/utils';
 import PressureTimeline from '@/components/PressureTimeline';
+import MatchWinProbabilityTimeline from '@/components/MatchWinProbabilityTimeline';
 
 export default function MatchAnalyzerPage() {
   const params = useParams();
@@ -97,6 +98,11 @@ export default function MatchAnalyzerPage() {
             </p>
           )}
         </div>
+      </div>
+
+      {/* Live Win Probability Added (WPA) & Turning Point */}
+      <div className="fade-in fade-in-2 mb-6">
+        <MatchWinProbabilityTimeline match={match} impactPlayers={impactPlayers} />
       </div>
 
       {/* Impact Chart */}
