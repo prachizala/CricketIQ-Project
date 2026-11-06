@@ -33,6 +33,7 @@ export default function RootLayout({
               <Link href="/compare" className="hover:text-[#e63946] transition-colors">Compare</Link>
               <Link href="/matchups" className="hover:text-[#e63946] transition-colors">Matchups</Link>
               <Link href="/venues" className="hover:text-[#e63946] transition-colors">Venues</Link>
+              <Link href="/clutch-index" className="hover:text-[#e63946] transition-colors">Clutch Index</Link>
               <Link href="/simulator" className="hover:text-[#e63946] transition-colors">Simulator</Link>
               <Link href="/auction-optimizer" className="hover:text-[#e63946] transition-colors">Auction XI</Link>
               <Link href="/scout" className="hover:text-[#e63946] transition-colors">AI Scout</Link>

@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Compare', href: '/compare' },
   { label: 'Matchups', href: '/matchups' },
   { label: 'Venues', href: '/venues' },
+  { label: 'Clutch Index', href: '/clutch-index' },
   { label: 'Simulator', href: '/simulator' },
   { label: 'Auction XI', href: '/auction-optimizer' },
   { label: 'AI Scout', href: '/scout' },
