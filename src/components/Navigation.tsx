@@ -10,6 +10,7 @@ const navItems = [
   { label: 'Leaderboard', href: '/leaderboard' },
   { label: 'Compare', href: '/compare' },
   { label: 'Simulator', href: '/simulator' },
+  { label: 'Auction XI', href: '/auction-optimizer' },
   { label: 'How It Works', href: '/how-it-works' },
 ];
 
