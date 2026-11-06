@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Leaderboard', href: '/leaderboard' },
   { label: 'Compare', href: '/compare' },
+  { label: 'Simulator', href: '/simulator' },
   { label: 'How It Works', href: '/how-it-works' },
 ];
 

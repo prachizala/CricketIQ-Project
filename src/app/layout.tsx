@@ -31,6 +31,7 @@ export default function RootLayout({
               <Link href="/dashboard" className="hover:text-[#e63946] transition-colors">Dashboard</Link>
               <Link href="/leaderboard" className="hover:text-[#e63946] transition-colors">Leaderboard</Link>
               <Link href="/compare" className="hover:text-[#e63946] transition-colors">Compare</Link>
+              <Link href="/simulator" className="hover:text-[#e63946] transition-colors">Simulator</Link>
               <Link href="/how-it-works" className="hover:text-[#e63946] transition-colors">How It Works</Link>
               <a href="https://github.com/prachizala/CricketIQ-Project" target="_blank" rel="noopener noreferrer" className="hover:text-[#e63946] transition-colors">GitHub</a>
             </div>
