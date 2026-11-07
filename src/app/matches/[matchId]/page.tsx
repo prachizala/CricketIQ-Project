@@ -1,16 +1,18 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { getMatchById, getMatchImpactPlayers, getPlayerData } from '@/lib/dataLoader';
 import { getImpactColor, getImpactLabel, getTeamColor } from '@/lib/utils';
 import PressureTimeline from '@/components/PressureTimeline';
 import MatchWinProbabilityTimeline from '@/components/MatchWinProbabilityTimeline';
+import MatchScoutingReportModal from '@/components/MatchScoutingReportModal';
 
 export default function MatchAnalyzerPage() {
   const params = useParams();
   const matchId = params.matchId as string;
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const data = useMemo(() => {
     const match = getMatchById(matchId);
@@ -43,9 +45,20 @@ export default function MatchAnalyzerPage() {
       {/* Match Header */}
       <div className="fade-in fade-in-1 bg-white border border-black/[0.06] rounded-2xl p-6 mb-6 shadow-sm relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e63946] to-[#ff4d5a]" />
-        <div className="flex items-center justify-between mb-5">
-          <span className="text-xs text-[#94a3b8] font-medium">{match.date?.replace(/\//g, '-')}</span>
-          <span className="text-xs text-[#b0b8c4]">{match.venue}</span>
+        <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#94a3b8] font-medium">{match.date?.replace(/\//g, '-')}</span>
+            <span className="text-xs text-[#b0b8c4]">&bull;</span>
+            <span className="text-xs text-[#b0b8c4]">{match.venue}</span>
+          </div>
+
+          {/* Export PDF Scouting Dossier Button */}
+          <button
+            onClick={() => setShowReportModal(true)}
+            className="px-3.5 py-1.5 rounded-lg border border-black/10 hover:border-[#e63946] text-[#1a1a2e] hover:text-[#e63946] text-xs font-semibold bg-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer no-print"
+          >
+            <span>📄 Export Match Report (PDF)</span>
+          </button>
         </div>
 
         <div className="flex items-center justify-between gap-8">
@@ -170,6 +183,14 @@ export default function MatchAnalyzerPage() {
           </div>
         ))}
       </div>
+
+      {/* Executive Match Scouting Dossier Modal */}
+      <MatchScoutingReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        match={match}
+        impactPlayers={impactPlayers}
+      />
     </div>
   );
 }
