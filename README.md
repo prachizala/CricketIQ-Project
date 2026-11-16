@@ -6,6 +6,7 @@
   <img src="https://img.shields.io/badge/XGBoost-Regressor-ff6600?style=for-the-badge" alt="XGBoost" />
   <img src="https://img.shields.io/badge/SHAP-Explainable_AI-22c55e?style=for-the-badge" alt="SHAP" />
   <img src="https://img.shields.io/badge/IPL_Data-18_Seasons-blue?style=for-the-badge" alt="IPL Data" />
+  <img src="https://img.shields.io/badge/CI-Passing-brightgreen?style=for-the-badge&logo=github-actions" alt="CI" />
 </p>
 
 <h1 align="center">🏏 CricketIQ</h1>
@@ -153,7 +154,16 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 3. Production Build
+### 3. Run Automated Tests
+```bash
+# Run simulation math and WPA unit tests
+python -m unittest tests/test_simulation_math.py
+
+# Run TypeScript type safety verification
+npx tsc --noEmit
+```
+
+### 4. Production Build
 ```bash
 npm run build
 npm run start
@@ -228,7 +238,12 @@ CricketIQ-Project/
 │   ├── data/                      # Precomputed leaderboard, weights, & match data
 │   └── lib/                       # Feature engineering, ML formulas, & types
 ├── model-template/                # Standalone Python inference package & REST API
-├── scripts/                       # Training, preprocessing & extraction scripts
+├── scripts/                       # Training, simulation engine & extraction scripts
+│   ├── simulation_engine.py       # Core WPA & match simulation mathematical formulations
+│   ├── train_model.py             # XGBoost model training & SHAP extraction
+│   └── preprocess.mjs             # Raw JSON data aggregation
+├── tests/                         # Automated mathematical validation suite
+│   └── test_simulation_math.py    # Unit tests for scoring formulas & WPA bounds
 ├── package.json                   # Project metadata & npm dependencies
 └── README.md                      # Comprehensive documentation
 ```
